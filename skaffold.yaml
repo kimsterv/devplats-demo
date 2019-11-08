@@ -1,0 +1,9 @@
+apiVersion: skaffold/v1beta17
+kind: Config
+build:
+  artifacts:
+  - image: gcr.io/dlorenc-vmtest2/skaffold-gitops-demo
+deploy:
+  kubectl:
+    manifests:
+    - deployment.yaml
