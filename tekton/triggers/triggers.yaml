@@ -39,46 +39,6 @@ spec:
 ---
 
 apiVersion: tekton.dev/v1alpha1
-kind: TriggerBinding
-metadata:
-  name: deploy-pipeline-binding-gitlab
-spec:
-  params:
-  - name: branch
-    value: $(body.ref)
-  - name: repo
-    value: $(body.repository.git_http_url)
----
-apiVersion: tekton.dev/v1alpha1
-kind: TriggerBinding
-metadata:
-  name: review-pipeline-binding-gitlab
-spec:
-  params:
-  - name: gitrevision
-    value: $(body.object_attributes.last_commit.id)
-  - name: gitrepositoryurl
-    value: $(body.object_attributes.source.git_http_url)
-  - name: prurl
-    value: $(body.object_attributes.url)
-  - name: repo
-    value: $(body.object_attributes.target.git_http_url)
-  - name: source
-    value: gitlab
----
-apiVersion: tekton.dev/v1alpha1
-kind: TriggerBinding
-metadata:
-  name: comment-pipeline-binding-gitlab
-spec:
-  params:
-  - name: repo
-    value: $(body.merge_request.source.web_url)/merge_requests/$(body.merge_request.iid)
-  - name: source
-    value: gitlab
----
-
-apiVersion: tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
   name: review-pipeline-template
